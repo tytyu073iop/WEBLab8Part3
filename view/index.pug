@@ -1,0 +1,10 @@
+doctype html
+head 
+    title Операции с цветами
+    | <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    script(defer, src="public/script.js") 
+body 
+    div
+        input(type="button", onclick="Add()", value="Добавить информацию о растении")
+        input(type="button" onclick="Clear()" value="Удалить всю сохранённую информацию")
+    div.dataTable
