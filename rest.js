@@ -9,6 +9,10 @@ app.get('/plant', (req, res) => {
     res.json(store.GetAll());
 });
 
+app.get('/plant/pagemode/:pagenum', (req, res) => {
+    res.status(200).json(store.PageGet(Number(req.params['pagenum']), 5));
+});
+
 app.get('/plant/:name', (req, res) => {
     const key = req.params.name;
     let hash = {};

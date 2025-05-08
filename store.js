@@ -64,6 +64,20 @@ class THashStorage {
     GetAll() {
         return this.hash;
     }
+
+    PageGet(pagenum, sizeOfPage) {
+        let from = sizeOfPage * (pagenum - 1);
+        let to = from + sizeOfPage;
+        to = Math.min(to, Object.keys(this.hash).length);
+        let keys = Object.keys(this.hash).slice(from, to);
+        
+        let hc = {};
+        for (let ke of keys) {
+            hc[ke] = this.hash[ke];
+        }
+
+        return { "hash" : hc, "pagenum" : pagenum, "maxPages" : Math.ceil(Object.keys(this.hash).length / sizeOfPage)};
+    }
 }
 
 module.exports = new THashStorage();
