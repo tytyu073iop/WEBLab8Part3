@@ -65,18 +65,29 @@ class THashStorage {
         return this.hash;
     }
 
-    PageGet(pagenum, sizeOfPage) {
+    PageGet(pagenum, sizeOfPage, toSort, template) {
+        let keys = Object.keys(this.hash);
+
+        if (toSort) {
+            keys.sort();
+        }
+
+        if (template != "") {
+            keys = keys.filter(item => item.includes(template));
+        }
+
         let from = sizeOfPage * (pagenum - 1);
         let to = from + sizeOfPage;
         to = Math.min(to, Object.keys(this.hash).length);
-        let keys = Object.keys(this.hash).slice(from, to);
+        
+        let keysToShow = keys.slice(from, to);
         
         let hc = {};
-        for (let ke of keys) {
+        for (let ke of keysToShow) {
             hc[ke] = this.hash[ke];
         }
 
-        return { "hash" : hc, "pagenum" : pagenum, "maxPages" : Math.ceil(Object.keys(this.hash).length / sizeOfPage)};
+        return { "hash" : hc, "pagenum" : pagenum, "maxPages" : Math.ceil(keys.length / sizeOfPage)};
     }
 }
 

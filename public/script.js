@@ -199,7 +199,9 @@ async function UpdateCare(plant) {
 }
 
 async function switchPage(page) {
-    const response = await fetch(`http://localhost:3000/plant/pagemode/${page}`, {
+    const toSort = $("#sort")[0].checked;
+    const template = $("#find").val();
+    const response = await fetch(`http://localhost:3000/plant/pagemode/${page}?sort=${toSort}&template=${template}`, {
         method: "GET"
     });
     
@@ -233,3 +235,13 @@ function updateTable() {
 }
 
 updateTable();
+
+function sortByName() {
+    curp = 1;
+    updateTable();
+}
+
+function find() {
+    curp = 1;
+    updateTable();
+}

@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express();
 const routes = require('./rest');
+const qs = require("qs");
 const port = 3000;
+
+app.set('query parser', (str) => qs.parse(str));
 
 console.log("this file executed");
 

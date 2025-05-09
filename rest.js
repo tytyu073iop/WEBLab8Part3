@@ -10,7 +10,8 @@ app.get('/plant', (req, res) => {
 });
 
 app.get('/plant/pagemode/:pagenum', (req, res) => {
-    res.status(200).json(store.PageGet(Number(req.params['pagenum']), 5));
+    const toSort = req.query['sort'] == "true" ? true : false;
+    res.status(200).json(store.PageGet(Number(req.params['pagenum']), 5, toSort, req.query['template']));
 });
 
 app.get('/plant/:name', (req, res) => {

@@ -8,7 +8,9 @@ body
         input(type="button", onclick="Add()", value="Добавить информацию о растении")
         input(type="button" onclick="Clear()" value="Удалить всю сохранённую информацию")
     div
-        input(type="button" value="Сортировать по названию" onclick="sortByName()")
-        input(type="text" value="Найти" id="find")
+        input(type="checkbox" id="sort" onclick="sortByName()")
+        label(for="sort") Сортировать по названию
+        br
+        input(type="search" placeholder="Найти" id="find")
         input(type="button" value="Поиск" onclick="find()")
     .dataTable
